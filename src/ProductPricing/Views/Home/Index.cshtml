@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ABHI Pricing</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Welcome to the ABHI Pricing </h2>
+        <p>
+            The Application calculates the premium based on the the current the current premium tables and computation logic for  the ABHI Retail Health Indemnity product.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Premium Table Viewer</h2>
+        <p>You can view the current premium tables for RHI</p>
+        <p><a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="Index" >Launch Premium Viewer</a></p>
+        <h2>Premium Calculator</h2>
+        <p>You can calculate a premium for RHI</p>
+        <p><a class="btn btn-primary" asp-area="" asp-controller="Premium" asp-action="Index">Launch Premium Calculator</a></p>
+        <h2>Premium Bulk Tester</h2>
+        <p>You Load an Excel Spreadsheet to bulk test the RHI premiums</p>
+        <p><a class="btn btn-primary" asp-area="" asp-controller="BulkTest" asp-action="Index">Launch Bulk Tester</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Files</h2>
+        <p>The following premium calc files were used</p>
+        <p>
+            <ul class="list-group">
+                <li class="list-group-item">Gold Enhanced with Deductible</li>
+                <li class="list-group-item">Gold Enhanced without Deductible</li>
+                <li class="list-group-item">Gold Essential with Deductible</li>
+                <li class="list-group-item">Gold Essential without Deductible</li>
+                <li class="list-group-item">Platinum Enhanced with Deductible</li>
+                <li class="list-group-item">Platinum Enhanced without Deductible</li>
+                <li class="list-group-item">Platinum Essential with Deductible</li>
+                <li class="list-group-item">Platinum Essential without Deductible</li>
+            </ul>
+        </p>
+    </div>
+</div>

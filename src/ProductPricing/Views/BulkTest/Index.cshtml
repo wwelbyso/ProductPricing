@@ -1,0 +1,205 @@
+﻿@model ProductPricing.ViewModels.BultTesterHeadViewModel
+@{
+    ViewData["Title"] = "Premium Calculator";
+}
+<script>
+$(document).ready(function () {
+
+    $("#showfail").click(function(){
+        $("#pass").hide();
+    });
+    $("#showall").click(function () {
+        $("#pass").show();
+    });
+
+});
+</script>
+<div class="jumbotron">
+    <h1>Premium Bulk Tester</h1>
+</div>
+    <div class="panel">
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+@using (Html.BeginForm("Index", "BulkTest", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+                    <td>
+                        <input type="submit" name="Submit" class="btn btn-primary" value="Run Bulk Test" />
+                    </td>
+                    <td><p>Choose Test File</p></td>
+                    <td>
+                        <input type="file" name="testFile" class="btn btn-primary" />
+                    </td>
+}
+
+                    <td>
+                        <button id="showfail"  class="btn btn-primary">Show Failed</button>
+                        <button id="showall" class="btn btn-primary">Show all</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+@if (Model != null)
+{
+            <div class="row">
+                <div class="alert alert-warning">
+                    <p>Total Tests : @Model.TotalTests , Total Pass : @Model.TotalPass  , Total Fail : @Model.TotalFail</p>
+                </div>
+                <table class="table table-striped table-condensed table-bordered .table-hover" style="font-size: 11px">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>No</th>
+                            <th>Product</th>
+                            <th>Plan</th>
+                            <th>Type</th>
+                            <th>Sum Insured</th>
+                            <th>Term</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Dia</th>
+                            <th>Hyp</th>
+                            <th>Lip</th>
+                            <th>Ast</th>
+                            <th>Sp</th>
+                            <th>Fa</th>
+                            <th>Mo</th>
+                            <th>iFa</th>
+                            <th>iMo</th>
+                            <th>Kids</th>
+                            <th>Zne</th>
+                            <th>Room</th>
+                            <th>Channel</th>
+                            <th>Deductible</th>
+                            <th>OPD</th>
+                            <th>Hosp Cash</th>
+                            <th>Mater</th>
+                            <th>Waiv</th>
+                            <th>Net</th>
+                            <th>Base</th>
+                            <th>Load</th>
+                            <th>Dis</th>
+                            <th>Rel</th>
+                            <th>Tot</th>
+                            <th>Input Prem</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.bulkTest)
+                        {
+                            <tr id="@(item.TestPass ? "pass" : "fail")">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PlanName)
+                                </td>
+                                <td nowrap>
+                                    @Html.DisplayFor(modelItem => item.PlanType)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.SumInsured)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.Term)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Diabetes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hypertension)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hyperlipidaemia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Asthma)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Spouse)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Father)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mother)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FatherInLaw)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MotherInLaw)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kids)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Zone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoomType)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Channel)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.Deductible)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.OPD)
+                                </td>
+                                <td class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.HospitalCash)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Maternity)
+                                </td>
+                                <td nowrap>
+                                    @Html.DisplayFor(modelItem => item.PremiumWaiver)
+                                </td>
+                                
+                                <td nowrap class="text-right @(!item.TestPass ? "danger" : "")">
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.NetAmount)
+                                </td>
+                                <td nowrap class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.BasePremium)
+                                </td>
+                                <td nowrap class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.LoadingFactor)
+                                </td>
+                                <td nowrap class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.DiscountFactor)
+                                </td>
+                                <td nowrap class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.RelativesFactor)
+                                </td>
+                                <td nowrap class='text-right'>
+                                    @Html.DisplayFor(modelItem => item.TotalPremium.TotalFactor)
+                                </td>
+                                <td nowrap class="text-right @(!item.TestPass ? "danger" : "")">
+                                    @Html.DisplayFor(modelItem => item.inputPremium)
+                                </td>
+                                <td>
+                                    <p>@Html.DisplayFor(modelItem => item.TotalPremium.Info)</p>
+                                    <p>@Html.DisplayFor(modelItem => item.familyString)</p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            }

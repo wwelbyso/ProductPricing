@@ -1,0 +1,40 @@
+<!--@model ProductPricing.Models.Product
+
+@{
+    ViewData["Title"] = "Premium Details";
+}
+
+<h2>Product Record</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Premium Id</th>
+            <th>Age</th>
+            <th>Premium</th>
+            <th> @Html.DisplayFor(modelItem => Model.SumDeduct.</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Premium)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PremiumId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Premium1)
+                </td>
+                <td>
+                    <a asp-action="PremiumRecord" asp-route-id="@item.PremiumId">PremiumRecord</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to Sum Premium List</a>
+</div>-->

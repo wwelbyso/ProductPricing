@@ -1,0 +1,72 @@
+@model ProductPricing.Models.Product
+
+@{
+    ViewData["Title"] = "Prodcut Details";
+}
+
+<h2>Product Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Product Id</dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+        <dt>Product Name</dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>Plan Name</dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlanName)
+        </dd>
+        <dt>Product Type</dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductType)
+        </dd>
+        <dt>Condition</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+        <dt>Family Composition</dt>
+        <dd>
+            @Html.DisplayFor(model => model.FamilyComposition.Text) - @Html.DisplayFor(model => model.FamilyCompositionId)
+        </dd>
+    </dl>
+ </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sum Deduct Id</th>
+                <th>Sum Insured</th>
+                <th>Deductible</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SumDeduct)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SumDeductId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SumInsured)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Deductible)
+                    </td>
+                    <td>
+                        <a asp-action="PremiumDetails" asp-route-id="@item.SumDeductId">PremiumDetails</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Index">Back to Product List</a>
+    </div>
