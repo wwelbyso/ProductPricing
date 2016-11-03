@@ -32,16 +32,30 @@ $(document).ready(function () {
                         <input type="file" name="testFile" class="btn btn-primary" />
                     </td>
 }
-
+<!-- 
                     <td>
                         <button id="showfail"  class="btn btn-primary">Show Failed</button>
                         <button id="showall" class="btn btn-primary">Show all</button>
                     </td>
                 </tr>
+    -->
+                    <td>
+                                <a class="btn btn-info" asp-area="" asp-controller="BulkTest" asp-action="Help">
+                                    <span class="glyphicon glyphicon-question-sign"></span> File Format Help
+                                </a>
+                    </td>
+
             </table>
         </div>
     </div>
-
+@if (ViewData["Error"] != null)
+{
+            <div class="row">
+                <div class="alert alert-danger">
+                    <p>@ViewData["Error"]</p>
+                 </div>
+             </div>
+}
 @if (Model != null)
 {
             <div class="row">

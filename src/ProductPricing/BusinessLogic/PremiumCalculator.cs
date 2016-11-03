@@ -249,9 +249,23 @@ namespace ProductPricing.BusinessLogic
             {
                 pmc = new PremiumCalc { name = "Maternity Expenses" };
                 model.Premiums.Add(pmc);
-                prem = getPremiumRecord("Optional Benefit: Maternity Expenses", "Maternity",
+
+                for (int age = model.Age; age < (model.Term + model.Age); age++)
+                {
+                    prem = getPremiumRecord("Optional Benefit: Maternity Expenses", "Maternity",
                                         "Optional", (cSelf * 2), "",
-                                        0, 0, model.Age, model.Term, "Maternity Expenses");
+                                        0, 0, age, model.Term, "Maternity Expenses");
+
+                    if (prem != null)
+                    {
+                        pmc.BasePremium += (prem.Amount/3);
+                        pmc.NetAmount = pmc.BasePremium;
+                        pmc.premiumItems.Add(prem);
+                    }
+                }
+
+
+           /*     
                 if (prem != null)
                 {
                     pmc.BasePremium = prem.Amount;
@@ -259,6 +273,7 @@ namespace ProductPricing.BusinessLogic
                     pmc.NetAmount = (pmc.BasePremium / 3) * noOffBase;
                     pmc.premiumItems.Add(prem);
                 }
+                */
 
             }
             //Add a Total Row 

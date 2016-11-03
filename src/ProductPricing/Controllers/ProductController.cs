@@ -129,14 +129,29 @@ namespace ProductPricing.Controllers
             }
             var product = await _context.Product
                    .Include(p => p.FamilyComposition)
-                   .Include(p => p.SumDeduct)
-                   //.OrderBy(p => p.SumDeduct)
+                   //.Include(p => p.SumDeduct)
+                   //.OrderBy((SumDeduct sm) => sm.Deductible)
                    .AsNoTracking()
                    .SingleOrDefaultAsync(pr => pr.ProductId == id);
             if (product == null)
             {
                 return NotFound();
             }
+
+            var sumdeducts = await _context.SumDeduct
+                .Where(pr => pr.ProductId == id)
+                .OrderBy(s => s.SumInsured)
+                .ThenBy(s => s.Deductible)
+                .AsNoTracking()
+                .ToListAsync();
+                
+
+            if (sumdeducts == null)
+            {
+                return NotFound();
+            }
+
+            product.SumDeduct = sumdeducts;
             return View(product);
         }
 
@@ -148,13 +163,27 @@ namespace ProductPricing.Controllers
                 return NotFound();
             }
             var sumDedct = await _context.SumDeduct
-                   .Include(p => p.Premium)
+                   //.Include(p => p.Premium)
                    .AsNoTracking()
                    .SingleOrDefaultAsync(pr => pr.SumDeductId == id);
             if (sumDedct == null)
             {
                 return NotFound();
             }
+            var premiums = await _context.Premium
+                .Where(pr => pr.SumDeductId == id)
+                .OrderBy(p => p.Age)
+                .AsNoTracking()
+                .ToListAsync();
+
+
+            if (premiums == null)
+            {
+                return NotFound();
+            }
+
+            sumDedct.Premium = premiums;
+
             return View(sumDedct);
         }
 
@@ -165,9 +194,10 @@ namespace ProductPricing.Controllers
             {
                 return NotFound();
             }
-            var sumDedct = await _context.SumDeduct
-                   .Include(p => p.Premium)
+            var sumDedct = await _context.Premium
+                   //.Include(p => p.Premium)
                    .AsNoTracking()
+                   .OrderBy((Premium p) => p.Age)
                    .SingleOrDefaultAsync(pr => pr.SumDeductId == id);
             if (sumDedct == null)
             {
