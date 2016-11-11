@@ -213,7 +213,10 @@ namespace ProductPricing.Controllers
                         bulkTester.TotalTests++;
                         if (btvm.TestPass) { bulkTester.TotalPass++; } else { bulkTester.TotalFail++; }
 
-                        bulkTester.bulkTest.Add(btvm);
+                        //if (!btvm.TestPass)
+                        //{
+                            bulkTester.bulkTest.Add(btvm);
+                        //}
 
                     }
                 }

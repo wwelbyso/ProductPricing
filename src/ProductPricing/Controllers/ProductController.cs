@@ -66,7 +66,6 @@ namespace ProductPricing.Controllers
                 .Include(p => p.FamilyComposition);
 
 
-
             switch (sortOrder)
             {
                 case "product_asc":
@@ -109,11 +108,9 @@ namespace ProductPricing.Controllers
                     products = products.OrderByDescending(product => product.FamilyCompositionId);
                     ViewData["FamilySortParm"] = "familysort_asc";
                     break;
-                /*default:
-                    products = products.OrderBy(product => product.ProductName);
+                default:
+                    products = products.OrderBy(product => product.ProductId);
                     break;
-                    */
-
             }
 
             int pageSize = 18;

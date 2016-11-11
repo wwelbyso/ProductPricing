@@ -1,0 +1,147 @@
+﻿@model ProductPricing.ViewModels.PremiumViewModel
+@{
+    ViewData["Title"] = "Premium Calculator";
+}
+<br/>
+<div class="container-fluid">
+<div class="row">
+    <form asp-controller="Premium" asp-action="Index" method="post"  class="form-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Product and Plan Details</b></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Product Name</label><select asp-for="ProductName" asp-items="Model.ProductNames"></select>
+                    <label>Plan Name</label><select asp-for="PlanName" asp-items="Model.PlanNames"></select>
+                    <label>Plan Type</label><select asp-for="PlanType" asp-items="Model.PlanTypes"></select>
+                    <label>Policy Term</label><select asp-for="Term" asp-items="Model.Terms"></select>
+                    <label>Staff<input asp-for="Staff"></label>
+                    <label>Channel</label><select asp-for="Channel" asp-items="Model.Channels"></select>
+                </div>
+                <div class="form-group">
+                    <label>Sum Insured</label><select asp-for="SumInsured" asp-items="Model.SumInsureds"></select>
+                    <label>Age<input asp-for="Age" min=0 max="80" maxlength="2"></label>
+                    <label>Gender</label><select asp-for="Gender" asp-items="Model.Genders"></select>
+                    <label>Zone</label><select asp-for="Zone" asp-items="Model.Zones"></select>
+                    <label>Room Type</label><select asp-for="RoomType" asp-items="Model.RoomTypes"></select>
+                </div>
+                <div class="form-group" id="Chronic">
+                    <label>Chronic Cover</label>
+                    <label><input type="checkbox" asp-for="Diabetes">Diabetes</label>
+                    <label><input type="checkbox" asp-for="Hypertension">Hypertension</label>
+                    <label><input type="checkbox" asp-for="Hyperlipidaemia">Hyperlipidaemia</label>
+                    <label><input type="checkbox" asp-for="Asthma">Asthma</label>
+                </div>
+           </div>
+        </div>
+        <div class="panel panel-primary" id="familyFloater">
+            <div class="panel-heading"><b>Family Floater Composition</b></div>
+            <div class="panel-body">
+                <p>
+                <div class="form-group">
+                    <label><input type="checkbox" asp-for="Spouse">Spouse</label>
+                    <label><input type="checkbox" asp-for="Father">Father</label>
+                    <label><input type="checkbox" asp-for="Mother">Mother</label>
+                    <label><input type="checkbox" asp-for="FatherInLaw">Father In Law</label>
+                    <label><input type="checkbox" asp-for="MotherInLaw">Mother In Law</label>
+                    <label>Kids<input asp-for="Kids" max="3" min="0" maxlength="2"></label>
+                </div>
+                </p>
+            </div>
+        </div>
+        <div class="panel panel-primary" id="OptionalCovers">
+            <div class="panel-heading"><b>Product Optional Covers</b></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Deductible</th>
+                                <th>Hospital Cash Benefit</th>
+                                <th>OPD</th>
+                                <th>Maternity</th>
+                                <th>Premium Waiver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select asp-for="Deductible" asp-items="Model.Deductibles"></select>
+                                </td>
+                                <td>
+                                    <select asp-for="HospitalCash" asp-items="Model.HospitalCashs"></select>
+                                </td>
+                                <td>
+                                    <select asp-for="OPD" asp-items="Model.OPDs"></select>
+                                </td>
+                                <td>
+                                    <input type="checkbox" asp-for="Maternity">
+                                </td>
+                                <td>
+                                    <input type="checkbox" asp-for="PremiumWaiver">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-title">
+            <button type="submit">Calculate Premium</button>
+        </div>
+
+</form>
+</div>
+@if (Model != null)
+{
+<div class="row">
+    <div class="alert alert-warning">
+    <strong>@ViewBag.Message</strong>
+    </div>
+    <table class="table table-bordered table-striped" >
+        <thead>
+            <tr>
+                <th>Premium Type</th>
+                <th>Net Amount</th>
+                <th>Base Premium</th>
+                <th>Load Fac</th>
+                <th>Dis Fac</th>
+                <th>Rel Fac</th>
+                <th>Tot Fac</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Premiums)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td class='text-right'>
+                        @Html.DisplayFor(modelItem => item.NetAmount)
+                    </td>
+                    <td class='text-right'>
+                        @Html.DisplayFor(modelItem => item.BasePremium)
+                    </td>
+                    <td class='text-right'>
+                        @Html.DisplayFor(modelItem => item.LoadingFactor)
+                    </td>
+                    <td class='text-right'>
+                        @Html.DisplayFor(modelItem => item.DiscountFactor)
+                    </td>
+                    <td class='text-right'>
+                        @Html.DisplayFor(modelItem => item.RelativesFactor)
+                    </td>
+                    <td class='text-right'>
+                         @Html.DisplayFor(modelItem => item.TotalFactor)
+                    </td>
+                    <td><p class="small">@Html.DisplayFor(modelItem => item.Info)</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+}
+</div>

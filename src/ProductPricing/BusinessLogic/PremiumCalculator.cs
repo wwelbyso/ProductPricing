@@ -29,7 +29,6 @@ namespace ProductPricing.BusinessLogic
         public PremiumViewModel calculatePremium(PremiumViewModel model)
         {
             PremiumItem prem;
-
             //Base Premium
             int famComp = 0;
             switch (model.PlanType)
@@ -45,7 +44,7 @@ namespace ProductPricing.BusinessLogic
             if (model.ProductName == "Platinum" && model.PlanType != "Family Floater")
             {
                 if (model.Diabetes) { chronic = "Diabetic"; }
-                else if (model.Hypertension) { chronic = "Cardiac"; }
+                else if (model.Hypertension) { chronic = "Hypertension"; }
                 else if (model.Hyperlipidaemia) { chronic = "Hyperlipidaemia"; }
                 else if (model.Asthma) { chronic = "Asthma"; }
             }

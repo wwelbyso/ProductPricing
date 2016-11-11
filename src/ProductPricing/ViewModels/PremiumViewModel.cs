@@ -162,7 +162,7 @@ namespace ProductPricing.ViewModels
             new SelectListItem { Value = "5000", Text = "5000" }
         };
 
-        public int OPD { get; set; } 
+        public int OPD { get; set; }
         public List<SelectListItem> OPDs { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value = "0", Text = "0" },
@@ -198,7 +198,7 @@ namespace ProductPricing.ViewModels
         //public virtual List<PremiumCalc> PremiumCalcs { get; } = new List<PremiumCalc>();
         public List<PremiumCalc> Premiums { get; set; } = new List<PremiumCalc>();
 
-}
+    }
 
     public class PremiumCalc
     {
@@ -208,9 +208,9 @@ namespace ProductPricing.ViewModels
         public decimal BasePremium { get; set; }
         public List<PremiumItem> premiumItems { get; set; } = new List<PremiumItem>();
 
-        public decimal LoadingFactor { get; set; } 
+        public decimal LoadingFactor { get; set; }
         public decimal DiscountFactor { get; set; }
-        public decimal RelativesFactor { get; set; } 
+        public decimal RelativesFactor { get; set; }
         public decimal TotalFactor { get; set; }
 
         public string Info { get; set; }
@@ -226,5 +226,7 @@ namespace ProductPricing.ViewModels
         public string Info { get; set; }
 
     }
+
+
     
 }

@@ -25,6 +25,10 @@
     },
     "betaTest": {
       "launchBrowser": true
+    },
+    "Docker": {
+      "launchBrowser": true,
+      "launchUrl": "tcp://192.168.99.100:2376"
     }
   }
 }

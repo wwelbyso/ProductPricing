@@ -9,27 +9,29 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><b>Product and Plan Details</b></div>
             <div class="panel-body">
-                <div class="form-group">
+                <div class="form-group" id="PolicyInfo">
                     <label>Product Name</label><select asp-for="ProductName" asp-items="Model.ProductNames"></select>
                     <label>Plan Name</label><select asp-for="PlanName" asp-items="Model.PlanNames"></select>
                     <label>Plan Type</label><select asp-for="PlanType" asp-items="Model.PlanTypes"></select>
                     <label>Policy Term</label><select asp-for="Term" asp-items="Model.Terms"></select>
                     <label>Staff<input asp-for="Staff"></label>
-                    <label>Channel</label><select asp-for="Channel" asp-items="Model.Channels"></select>
+                    <!-- <label>Channel</label><select asp-for="Channel" asp-items="Model.Channels"></select> -->
                 </div>
-                <div class="form-group">
-                    <label>Sum Insured</label><select asp-for="SumInsured" asp-items="Model.SumInsureds"></select>
-                    <label>Age<input asp-for="Age" min=0 max="80" maxlength="2"></label>
-                    <label>Gender</label><select asp-for="Gender" asp-items="Model.Genders"></select>
-                    <label>Zone</label><select asp-for="Zone" asp-items="Model.Zones"></select>
-                    <label>Room Type</label><select asp-for="RoomType" asp-items="Model.RoomTypes"></select>
-                </div>
-                <div class="form-group" id="Chronic">
-                    <label>Chronic Cover</label>
-                    <label><input type="checkbox" asp-for="Diabetes">Diabetes</label>
-                    <label><input type="checkbox" asp-for="Hypertension">Hypertension</label>
-                    <label><input type="checkbox" asp-for="Hyperlipidaemia">Hyperlipidaemia</label>
-                    <label><input type="checkbox" asp-for="Asthma">Asthma</label>
+                <div class="form-group" id="MultiIndividual">
+                    <div class="form-group" id="Individual">
+                        <label>Sum Insured</label><select asp-for="SumInsured" asp-items="Model.SumInsureds"></select>
+                        <label>Age<input asp-for="Age" min=0 maxlength="2"></label>
+                        <label>Gender</label><select asp-for="Gender" asp-items="Model.Genders"></select>
+                        <label>Zone</label><select asp-for="Zone" asp-items="Model.Zones"></select>
+                        <label>Room Type</label><select asp-for="RoomType" asp-items="Model.RoomTypes"></select>
+                        <div class="form-group" id="Chronic">
+                            <label>Chronic Cover</label>
+                            <label><input type="checkbox" asp-for="Diabetes">Diabetes</label>
+                            <label><input type="checkbox" asp-for="Hypertension">Hypertension</label>
+                            <label><input type="checkbox" asp-for="Hyperlipidaemia">Hyperlipidaemia</label>
+                            <label><input type="checkbox" asp-for="Asthma">Asthma</label>
+                        </div>
+                    </div>
                 </div>
            </div>
         </div>
@@ -48,7 +50,7 @@
                 </p>
             </div>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" id="OptionalCovers">
             <div class="panel-heading"><b>Product Optional Covers</b></div>
             <div class="panel-body">
                 <div class="form-group">
