@@ -82,8 +82,7 @@
       "docker-compose.yml",
       "Dockerfile",
       ".dockerignore",
-      "embed",
-        "SQLite/ABHIPricing.db"
+       "SQLite/ABHIPricing.db"
     ]
   },
   "scripts": {
